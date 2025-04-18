@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Catalogue des médias</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            margin: 2em;
+            background-color: #f5f5f5;
+        }
+        h1 {
+            color: #333;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        input[type="text"] {
+            padding: 6px;
+            width: 300px;
+        }
+        label {
+            margin-right: 10px;
+        }
+        ul {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            list-style: none;
+        }
+        li {
+            margin: 10px 0;
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <h1>Catalogue des médias</h1>
+
+    <form method="get">
+        <label for="recherche">Rechercher :</label>
+        <input type="text" name="q" id="recherche" value="{{ recherche|default:'' }}">
+
+        <label>
+            <input type="checkbox" name="disponible" value="1" {% if disponible == '1' %}checked{% endif %}>
+            Uniquement disponibles
+        </label>
+
+        <button type="submit">Filtrer</button>
+    </form>
+
+    <ul>
+        {% for media in medias %}
+            <li>
+                <strong>{{ media.titre }}</strong> — {{ media.type_media }}
+                <span class="{% if media.disponible %}dispo{% else %}non-dispo{% endif %}">
+                    {% if media.disponible %}(Disponible){% else %}(Emprunté){% endif %}
+                </span>
+            </li>
+        {% empty %}
+            <li>Aucun média trouvé.</li>
+        {% endfor %}
+    </ul>
+</body>
+</html>
