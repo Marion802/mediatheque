@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des Médias</title>
+</head>
+<body>
+    <h1>Liste des Médias</h1>
+    <ul>
+        {% for media in medias %}
+            <li>{{ media.titre }} ({{ media.type_media }})</li>
+        {% empty %}
+            <li>Aucun média disponible.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'bibliothecaire:accueil_biblio' %}">Accueil</a>
+</body>
+</html>
+l>

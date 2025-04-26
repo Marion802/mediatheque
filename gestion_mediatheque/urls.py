@@ -4,9 +4,7 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bibliotheque/', include('bibliothecaire.urls')),
+    path('bibliotheque/', include('bibliothecaire.urls')),  # ✅ c’est cette ligne qui importe les URLs
     path('catalogue/', include('membre.urls')),
-
-    # Rediriger la racine vers /catalogue/
     path('', RedirectView.as_view(url='/catalogue/', permanent=False)),
 ]

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<head>
+    <title>Liste des Emprunts</title>
+</head>
+<body>
+    <h1>Liste des Emprunts</h1>
+    <ul>
+        {% for emprunt in emprunts %}
+            <li>
+                {{ emprunt.media.titre }} emprunté par {{ emprunt.emprunteur.nom }}
+                {% if emprunt.date_retour %}
+                    (retourné le {{ emprunt.date_retour }})
+                {% else %}
+                    (non retourné)
+                {% endif %}
+            </li>
+        {% empty %}
+            <li>Aucun emprunt en cours.</li>
+        {% endfor %}
+    </ul>
+    <a href="{% url 'bibliothecaire:accueil_biblio' %}">Accueil</a>
+</body>

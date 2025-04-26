@@ -1,0 +1,47 @@
+Rapport de Projet - Gestion de Médiathèque
+
+1. Explication des choix techniques
+-----------------------------------
+Le projet est construit avec Django, un framework Python permettant de structurer efficacement les applications web. Deux applications distinctes ont été créées :
+- "bibliothecaire" : pour la gestion interne des emprunts, retours, et médias.
+- "membre" : pour permettre aux utilisateurs de consulter les médias et leurs emprunts.
+
+2. Étude du code initial
+------------------------
+Le code initial était constitué de classes Python représentant des objets comme Livre, CD, etc., mais sans logique orientée objet ou structure Django.
+Ce code a été restructuré en modèles Django (Media, Emprunteur, Emprunt) afin de bénéficier du système ORM et de l'admin.
+
+3. Fonctionnalités mises en place
+---------------------------------
+- Création de modèles : Media, Emprunteur, Emprunt.
+- Ajout de règles métiers : limitation d'emprunts, détection de retard, retour de média.
+- Activation de l'interface admin.
+- Affichage des médias et des emprunts côté membre.
+- Tests unitaires pour les fonctionnalités principales.
+
+4. Stratégie de tests
+---------------------
+Les tests ont été réalisés avec `pytest` et `TestCase` de Django pour vérifier :
+- La création des emprunts.
+- Le bon fonctionnement des règles métiers (retard, limitation d'emprunts).
+- Le processus de retour.
+
+5. Contenu de la base de données test
+-------------------------------------
+Des objets fictifs ont été ajoutés en base de test :
+- 1 utilisateur emprunteur.
+- 3 types de médias.
+- 2 emprunts actifs et 1 avec retard.
+
+6. Instructions d’exécution
+---------------------------
+Prérequis : Python, virtualenv
+
+- Cloner le projet
+- Créer un environnement virtuel : `python -m venv env`
+- Activer l’environnement : `source env/bin/activate` (Linux/macOS) ou `env\Scripts\activate` (Windows)
+- Installer les dépendances : `pip install -r requirements.txt`
+- Lancer le serveur : `python manage.py runserver`
+- Accéder à : http://127.0.0.1:8000/membre/
+
+Test : `python manage.py test`
