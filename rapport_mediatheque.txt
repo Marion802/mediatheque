@@ -15,9 +15,9 @@ Ce code a été restructuré en modèles Django (Media, Emprunteur, Emprunt) afi
 ---------------------------------
 - Création de modèles : Media, Emprunteur, Emprunt.
 - Ajout de règles métiers : limitation d'emprunts, détection de retard, retour de média.
-- Activation de l'interface admin.
-- Affichage des médias et des emprunts côté membre.
-- Tests unitaires pour les fonctionnalités principales.
+- Activation de l'interface admin avec mdp
+- Affichage et recherches des médias (disponible ou non) côté membre.
+- Tests unitaires pour les fonctionnalités principales pour les 2 applications
 
 4. Stratégie de tests
 ---------------------
@@ -29,9 +29,9 @@ Les tests ont été réalisés avec `pytest` et `TestCase` de Django pour vérif
 5. Contenu de la base de données test
 -------------------------------------
 Des objets fictifs ont été ajoutés en base de test :
-- 1 utilisateur emprunteur.
-- 3 types de médias.
-- 2 emprunts actifs et 1 avec retard.
+- 4 utilisateurs emprunteurs.
+- 9 medias (3 de chaque).
+- 1 emprunts actifs
 
 6. Instructions d’exécution
 ---------------------------
@@ -42,6 +42,7 @@ Prérequis : Python, virtualenv
 - Activer l’environnement : `source env/bin/activate` (Linux/macOS) ou `env\Scripts\activate` (Windows)
 - Installer les dépendances : `pip install -r requirements.txt`
 - Lancer le serveur : `python manage.py runserver`
-- Accéder à : http://127.0.0.1:8000/membre/
+- Accéder à : http://127.0.0.1:8000 (pour membre)
+- Accéder à : http://127.0.0.1:8000/bibliothecaire (pour bibliothecaire)
 
 Test : `python manage.py test`

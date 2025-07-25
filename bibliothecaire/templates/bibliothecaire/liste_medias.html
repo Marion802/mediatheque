@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Liste des Médias</title>
+    <title>Liste des médias</title>
 </head>
 <body>
-    <h1>Liste des Médias</h1>
+    <h1>Médias</h1>
     <ul>
         {% for media in medias %}
-            <li>{{ media.titre }} ({{ media.type_media }})</li>
-        {% empty %}
-            <li>Aucun média disponible.</li>
+            <li>{{ media.titre }} - {% if not media.disponible %} Emprunté{% else %}Disponible{% endif %}</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'bibliothecaire:accueil_biblio' %}">Accueil</a>
+    <a href="{% url 'bibliothecaire:accueil' %}">Retour à l'accueil</a>
+    <a href="{% url 'bibliothecaire:ajouter_media' %}">Ajouter un média</a>
+
 </body>
 </html>
-l>

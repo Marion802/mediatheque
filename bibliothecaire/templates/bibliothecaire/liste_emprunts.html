@@ -1,22 +1,31 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <title>Liste des Emprunts</title>
+    <title>Liste des emprunts</title>
 </head>
 <body>
-    <h1>Liste des Emprunts</h1>
+    <h1>Liste des emprunts</h1>
+
     <ul>
         {% for emprunt in emprunts %}
             <li>
-                {{ emprunt.media.titre }} emprunté par {{ emprunt.emprunteur.nom }}
-                {% if emprunt.date_retour %}
-                    (retourné le {{ emprunt.date_retour }})
+                {{ emprunt.media }} emprunté par {{ emprunt.membre }} le {{ emprunt.date_emprunt }}
+
+                {% if not emprunt.date_retour %}
+                    <!-- Formulaire pour rendre l’emprunt -->
+                    <form method="post" action="{% url 'bibliothecaire:rendre_emprunt' emprunt.id %}">
+                        {% csrf_token %}
+                        <button type="submit">Rendre</button>
+                    </form>
                 {% else %}
-                    (non retourné)
+                    - Rendu le {{ emprunt.date_retour }}
                 {% endif %}
             </li>
-        {% empty %}
-            <li>Aucun emprunt en cours.</li>
         {% endfor %}
     </ul>
-    <a href="{% url 'bibliothecaire:accueil_biblio' %}">Accueil</a>
+
+    <br>
+    <a href="{% url 'bibliothecaire:accueil' %}">Retour à l'accueil</a>
 </body>
+</html>
+html>

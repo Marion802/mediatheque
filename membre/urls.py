@@ -1,6 +1,8 @@
 from django.urls import path
-from .views import liste_medias
+from . import views
+
+app_name = 'membre'
 
 urlpatterns = [
-    path('', liste_medias, name='liste_medias'),
+    path('medias/', views.liste_medias, name='liste_medias'),
 ]

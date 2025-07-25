@@ -1,9 +1,9 @@
 from django.contrib import admin
-from .models import Emprunteur, Media, Emprunt
+from .models import Membre, Media, Emprunt
 from django.utils import timezone
 
-@admin.register(Emprunteur)
-class EmprunteurAdmin(admin.ModelAdmin):
+@admin.register(Membre)
+class MembreAdmin(admin.ModelAdmin):
     list_display = ('nom', 'email', 'bloque', 'nombre_emprunts_actifs', 'a_un_retard')
 
     def nombre_emprunts_actifs(self, obj):
@@ -35,4 +35,3 @@ class EmpruntAdmin(admin.ModelAdmin):
         nb = queryset.update(date_retour=timezone.now())
         self.message_user(request, f"{nb} emprunt(s) marqué(s) comme retourné(s).")
     rendre_livre.short_description = "Rendre les livres sélectionnés"
-

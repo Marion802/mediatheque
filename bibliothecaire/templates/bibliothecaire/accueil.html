@@ -1,12 +1,16 @@
 <!DOCTYPE html>
+<html>
 <head>
-    <title>Accueil - Bibliothécaire</title>
+    <title>Accueil bibliothécaire</title>
 </head>
 <body>
-    <h1>Bienvenue sur l'espace bibliothécaire</h1>
+    <h1>Bienvenue, bibliothécaire</h1>
     <ul>
-        <li><a href="{% url 'bibliothecaire:liste_medias' %}">Voir les médias</a></li>
+        <li><a href="{% url 'bibliothecaire:liste_membres' %}">Gérer les membres</a></li>
+        <li><a href="{% url 'bibliothecaire:ajouter_media' %}">Gérer les médias</a></li>
+        <li><a href="{% url 'bibliothecaire:ajouter_emprunt' %}">Créer un nouvel emprunt</a><li>
         <li><a href="{% url 'bibliothecaire:liste_emprunts' %}">Voir les emprunts</a></li>
+        <li><a href="{% url 'bibliothecaire:liste_medias' %}">Voir les médias</a></li>
     </ul>
 </body>
 </html>

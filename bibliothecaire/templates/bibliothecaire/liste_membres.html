@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Liste des membres</title>
+</head>
+<body>
+    <h1>Membres</h1>
+    <ul>
+        {% for membre in membres %}
+            <li>
+                {{ membre.nom }} {% if membre.bloque %}(bloqué){% endif %}
+                - <a href="{% url 'bibliothecaire:bloquer_membre' membre.id %}">Bloquer/Débloquer</a>
+                - <a href="{% url 'bibliothecaire:modifier_membre' membre.id %}">Modifier</a>
+                - <a href="{% url 'bibliothecaire:supprimer_membre' membre.id %}" onclick="return confirm('Es-tu sûr de vouloir supprimer ce membre ?');">Supprimer</a>
+            </li>
+        {% endfor %}
+    </ul>
+
+    <a href="{% url 'bibliothecaire:membre_create' %}">Ajouter un membre</a><br>
+    <a href="{% url 'bibliothecaire:accueil' %}">Retour à l'accueil</a>
+</body>
+</html>

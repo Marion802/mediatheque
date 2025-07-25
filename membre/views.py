@@ -1,20 +1,24 @@
 from django.shortcuts import render
-from bibliothecaire.models import Media
+from bibliothecaire.models import Media, Emprunt
+from django.utils import timezone
+from datetime import timedelta
 
 def liste_medias(request):
     medias = Media.objects.all()
 
-    # Filtrage par disponibilité
     disponible = request.GET.get('disponible')
     if disponible == '1':
-        medias = medias.filter(disponible=True)
+        aujourd_hui = timezone.now().date()
+        duree_emprunt = timedelta(days=7)
 
-    # Filtrage par recherche
+        emprunts_actifs = Emprunt.objects.filter(date_emprunt__gte=aujourd_hui - duree_emprunt)
+        ids_indisponibles = emprunts_actifs.values_list('media_id', flat=True)
+
+        medias = medias.exclude(id__in=ids_indisponibles)
+
     recherche = request.GET.get('q')
     if recherche:
-        medias = medias.filter(
-            titre__icontains=recherche
-        )
+        medias = medias.filter(titre__icontains=recherche)
 
     return render(request, 'membre/liste_medias.html', {
         'medias': medias,

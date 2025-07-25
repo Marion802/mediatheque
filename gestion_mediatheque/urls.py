@@ -4,7 +4,13 @@ from django.views.generic import RedirectView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('bibliotheque/', include('bibliothecaire.urls')),  # ✅ c’est cette ligne qui importe les URLs
-    path('catalogue/', include('membre.urls')),
-    path('', RedirectView.as_view(url='/catalogue/', permanent=False)),
+
+    # Inclure l'app bibliothécaire avec un namespace
+    path('bibliothecaire/', include(('bibliothecaire.urls', 'bibliothecaire'), namespace='bibliothecaire')),
+
+    # Inclure l'app membre avec un namespace
+    path('membre/', include(('membre.urls', 'membre'), namespace='membre')),
+
+    # Rediriger la racine du site vers la vue membre:liste_medias
+    path('', RedirectView.as_view(pattern_name='membre:liste_medias', permanent=False)),
 ]

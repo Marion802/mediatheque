@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un emprunt</title>
+</head>
+<body>
+    <h1>Créer un nouvel emprunt</h1>
+
+    <!-- Affichage des messages (erreur, succès, etc.) -->
+    {% if messages %}
+        <ul>
+        {% for message in messages %}
+            <li {% if message.tags %} class="{{ message.tags }}" {% endif %}>{{ message }}</li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+    <!-- Formulaire pour ajouter un emprunt -->
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Valider l’emprunt</button>
+    </form>
+
+    <br>
+    <a href="{% url 'bibliothecaire:accueil' %}">Retour à l'accueil</a>
+</body>
+</html>

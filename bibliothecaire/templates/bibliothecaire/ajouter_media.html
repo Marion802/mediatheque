@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Ajouter un média</title>
+</head>
+<body>
+    <h1>Ajouter un nouveau média</h1>
+    <form method="post">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Enregistrer</button>
+    </form>
+    <a href="{% url 'bibliothecaire:liste_medias' %}">Retour à la liste des médias</a>
+</body>
+</html>
